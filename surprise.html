@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Bubu ❤️</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(180deg,#2b1055,#7597de,#ff9a9e);
+  color:white;
+}
+
+/* Elegant Card */
+.card{
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:90%; max-width:520px;
+  padding:50px 28px;
+  border-radius:35px;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(25px);
+  box-shadow:0 0 100px rgba(255,182,193,0.7);
+  text-align:center;
+  z-index:5;
+  animation:fade 2s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translate(-50%,-40%)}
+  to{opacity:1;transform:translate(-50%,-50%)}
+}
+
+h1{
+  font-size:30px;
+  margin-bottom:18px;
+  text-shadow:0 0 25px #ffb6c1;
+}
+
+#text{
+  min-height:150px;
+  font-size:19px;
+  line-height:1.8;
+  margin-bottom:25px;
+}
+
+button{
+  padding:15px 34px;
+  border:none;border-radius:30px;
+  background:white;color:#ff4e7a;
+  font-weight:bold;cursor:pointer;
+  box-shadow:0 0 30px white;
+}
+
+/* Slow Romantic Rain */
+.rain{
+  position:fixed;
+  top:-60px;
+  font-size:24px;
+  z-index:10;
+  animation:fall linear forwards;
+  opacity:0.85;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10vh)}
+  100%{transform:translateY(120vh)}
+}
+
+/* Popup Message */
+.popup{
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:white;
+  color:#ff4e7a;
+  padding:30px 28px;
+  border-radius:25px;
+  text-align:center;
+  font-weight:bold;
+  z-index:20;
+  box-shadow:0 0 60px white;
+  transition:0.4s;
+}
+.popup.show{
+  transform:translate(-50%,-50%) scale(1);
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Happy 1 Month Anniversary 💖</h1>
+  <div id="text"></div>
+  <button onclick="showPopup()">Tap Here ❤️</button>
+</div>
+
+<div id="pop" class="popup">
+  Bubu, you are my peace, my happiness, and the most beautiful part of my life. I promise to love you more with every passing day. 💗
+</div>
+
+<script>
+// Romantic Typewriter Message
+const msg="One month ago, when you confessed your feelings to me, you didn’t just make me happy — you changed my entire world. Since that day, every moment feels warmer, every smile feels brighter, and every heartbeat feels more meaningful because it beats for you, Bubu. Your care, your love, and the way you understand me make me feel like the luckiest person alive. I don’t just want today with you, I want every tomorrow with you.";
+let i=0;
+function type(){
+ if(i<msg.length){
+  document.getElementById("text").innerHTML+=msg.charAt(i);
+  i++; setTimeout(type,38);
+ }
+}
+type();
+
+// Slow, less rain
+const items=["💖","🌹","✨","I Love You ❤️"];
+setInterval(()=>{
+  let el=document.createElement("div");
+  el.className="rain";
+  el.innerHTML=items[Math.floor(Math.random()*items.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=(12+Math.random()*6)+"s"; // slow
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),18000);
+},900); // kam quantity
+
+function showPopup(){
+  document.getElementById("pop").classList.add("show");
+}
+</script>
+
+</body>
+</html>
